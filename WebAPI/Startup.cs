@@ -12,6 +12,8 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.EntityFrameworkCore;
 using Persistencia;
+using MediatR;
+using Aplicacion.Cursos;
 
 namespace WebAPI
 {
@@ -31,6 +33,8 @@ namespace WebAPI
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
             });
             services.AddControllers();
+            services.AddMediatR(typeof(Consulta.Manejador).Assembly);
+            services.AddMediatR(typeof(ConsultaId.Manejador).Assembly);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
